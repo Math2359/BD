@@ -1,0 +1,179 @@
+Microsoft Windows [versão 10.0.18362.836]
+(c) 2019 Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\Edu>cd..
+
+C:\Users>cd..
+
+C:\>cd xampp
+
+C:\xampp>cd mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.11-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database biblioteca;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [(none)]>
+MariaDB [(none)]> use biblioteca;
+Database changed
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE aluno (
+    -> nome varchar(255),
+    -> turma varchar(255),
+    -> numcel varchar(150),
+    -> numfixo varchar(150),
+    -> datanascimento date,
+    -> email varchar(255),
+    -> codCliente int PRIMARY KEY auto_increment
+    -> );
+Query OK, 0 rows affected (0.261 sec)
+
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE livro (
+    -> titulo varchar(255),
+    -> autor varchar(255),
+    -> editora varchar(255),
+    -> genero varchar(255),
+    -> codLivros int PRIMARY KEY auto_increment
+    -> );
+Query OK, 0 rows affected (0.387 sec)
+
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE bibliotecario (
+    -> cpf varchar(150),
+    -> numfixo varachar(150),
+    -> nome varchar(255),
+    -> logradouro varchar(255),
+    -> uf char(2),
+    -> cep varchar(150),
+    -> bairro varchar(255),
+    -> cidade varchar(255),
+    -> complemento varchar(255),
+    -> numcel varchar(150),
+    -> rg varchar(150),
+    -> email varchar(255),
+    -> codBibliotecario int PRIMARY KEY auto_increment
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'varachar(150),
+nome varchar(255),
+logradouro varchar(255),
+uf char(2),
+cep varch' at line 3
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE emprestimo_devolucao (
+    -> data_devolucao date,
+    -> data_emprestimo date,
+    -> codEmprestimo int PRIMARY KEY auto_increment,
+    -> codCliente int,
+    -> codLivros int,
+    -> codBibliotecario int,
+    -> FOREIGN KEY(codCliente) REFERENCES aluno (codCliente),
+    -> FOREIGN KEY(codLivros) REFERENCES livro (codLivros),
+    -> FOREIGN KEY(codBibliotecario) REFERENCES bibliotecario (codBibliotecario)
+    -> );
+ERROR 1005 (HY000): Can't create table `biblioteca`.`emprestimo_devolucao` (errno: 150 "Foreign key constraint is incorrectly formed")
+MariaDB [biblioteca]> CREATE TABLE bibliotecario (
+    -> cpf varchar(150),
+    -> numfixo varchar(150),
+    -> nome varchar(255),
+    -> logradouro varchar(255),
+    -> uf char(2),
+    -> cep varchar(150),
+    -> bairro varchar(255),
+    -> cidade varchar(255),
+    -> complemento varchar(255),
+    -> numcel varchar(150),
+    -> rg varchar(150),
+    -> email varchar(255),
+    -> codBibliotecario int PRIMARY KEY auto_increment
+    -> );
+Query OK, 0 rows affected (0.277 sec)
+
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE emprestimo_devolucao (
+    -> data_devolucao date,
+    -> data_emprestimo date,
+    -> codEmprestimo int PRIMARY KEY auto_increment,
+    -> codCliente int,
+    -> codLivros int,
+    -> codBibliotecario int,
+    -> FOREIGN KEY(codCliente) REFERENCES aluno (codCliente),
+    -> FOREIGN KEY(codLivros) REFERENCES livro (codLivros),
+    -> FOREIGN KEY(codBibliotecario) REFERENCES bibliotecario (codBibliotecario)
+    -> );
+Query OK, 0 rows affected (0.306 sec)
+
+MariaDB [biblioteca]> drop database biblioteca;
+Query OK, 4 rows affected (0.916 sec)
+
+MariaDB [(none)]> create database biblioteca;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [(none)]>
+MariaDB [(none)]> use biblioteca;
+Database changed
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE aluno (
+    -> nome varchar(255),
+    -> turma varchar(255),
+    -> numcel varchar(150),
+    -> numfixo varchar(150),
+    -> datanascimento date,
+    -> email varchar(255),
+    -> codCliente int PRIMARY KEY auto_increment
+    -> );
+Query OK, 0 rows affected (0.280 sec)
+
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE livro (
+    -> titulo varchar(255),
+    -> autor varchar(255),
+    -> editora varchar(255),
+    -> genero varchar(255),
+    -> codLivros int PRIMARY KEY auto_increment
+    -> );
+Query OK, 0 rows affected (0.280 sec)
+
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE bibliotecario (
+    -> cpf varchar(150),
+    -> numfixo varchar(150),
+    -> nome varchar(255),
+    -> logradouro varchar(255),
+    -> uf char(2),
+    -> cep varchar(150),
+    -> bairro varchar(255),
+    -> cidade varchar(255),
+    -> complemento varchar(255),
+    -> numcel varchar(150),
+    -> rg varchar(150),
+    -> email varchar(255),
+    -> codBibliotecario int PRIMARY KEY auto_increment
+    -> );
+Query OK, 0 rows affected (0.290 sec)
+
+MariaDB [biblioteca]>
+MariaDB [biblioteca]> CREATE TABLE emprestimo_devolucao (
+    -> data_devolucao date,
+    -> data_emprestimo date,
+    -> codEmprestimo int PRIMARY KEY auto_increment,
+    -> codCliente int,
+    -> codLivros int,
+    -> codBibliotecario int,
+    -> FOREIGN KEY(codCliente) REFERENCES aluno (codCliente),
+    -> FOREIGN KEY(codLivros) REFERENCES livro (codLivros),
+    -> FOREIGN KEY(codBibliotecario) REFERENCES bibliotecario (codBibliotecario)
+    -> );
+Query OK, 0 rows affected (0.358 sec)
+
+MariaDB [biblioteca]>

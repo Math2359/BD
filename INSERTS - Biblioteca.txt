@@ -1,0 +1,75 @@
+Microsoft Windows [versão 10.0.18362.836]
+(c) 2019 Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\Edu>cd..
+
+C:\Users>cd..
+
+C:\>cd xampp
+
+C:\xampp>cd mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 313
+Server version: 10.4.11-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use biblioteca
+Database changed
+
+MariaDB [biblioteca]> insert into livro (titulo, autor, editora, genero) VALUES
+    -> ('Percy Jackson e Os Olimpianos: O Mar de Monstros','Rick Riordan','Intríseca','Aventura'),
+    -> ('Transplante de Menina','Tatiana Belinky','Moderna','Biografia'),
+    -> ('Cacos de Vida: Sobrevivendo nas ruas da Índia','Sally Grindley','Ática','Aventura'),
+    -> ('Irmãos de Guerra','Sharon E. McKay e Daniel Lafrance','Ática','Baseado em fatos'),
+    -> ('A Montanha Encantada','Maria José Dupré','Ática','Aventura e Suspense'),
+    -> ('A Mina de Ouro','Maria José Dupré','Ática','Aventura e Suspense'),
+    -> ('O Cachorrinho Samba','Maria José Dupré','Ática','Aventura e Suspense'),
+    -> ('O Cachorrinho Samba na Floresta','Maria José Dupré','Ática','Aventura e Suspense'),
+    -> ('O Cachorrinho Samba na Fazenda','Maria José Dupré','Ática','Aventura e Suspense'),
+    -> ('O Labirinto dos Ossos','Rick Riordan','Ática','Aventura e Suspense');
+Query OK, 10 rows affected (0.144 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+7 rows in set (0.022 sec)
+
+MariaDB [biblioteca]> insert into aluno (nome, turma, numcel, numfixo, datanascimento, email) values
+    -> ('Josefo Alves','1ºC','11 11111-1111','11 44444-4444','2010-05-30','josefinho@gmail.com'),
+    -> ('Rosemiro Golfo','2ºf','11 22222-2222','11 55555-5555','2006-07-09','Rosemiro@gmail.com'),
+    -> ('Silvania Pereira','1ºD','15 11111-1111','15 44444-4444','2008-09-29','Salgado@gmail.com'),
+    -> ('Ova Jovansele','3ºH','15 22222-2222','15 55555-5555','1978-11-11','Ovajova@gmail.com'),
+    -> ('Carlos Fuligem','1ºC','11 33333-3333','11 66666-6666','2007-01-01','Fulge@gmail.com'),
+    -> ('Yuji Yamamoto','1ºF','11 44444-4444','11 77777-7777','2010-10-10','Yamamoto@gmail.com'),
+    -> ('Alessandra Gather','3ºA','15 33333-3333','15 66666-6666','2006-06-06','Alêga@gmail.com'),
+    -> ('Farmera Josla','1ºD','15 44444-4444','15 77777-7777','2003-09-12','Farme@gmail.com'),
+    -> ('Marcela Ziur','2ºF','11 55555-5555','11 88888-8888','1981-12-31','Marcelaz@gmail.com'),
+    -> ('Marcos Ittako','1ºC','15 55555-5555','15 88888-8888','2005-09-10','Marcos.I@outlook.com');
+Query OK, 10 rows affected (0.172 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+MariaDB [biblioteca]> insert into bibliotecario (nome, email, cpf, numcel, cidade, uf, datanascimento) VALUES
+    -> ('Barbara Souza','Barbie@gmail.com','123.456.789-04','11 98776-5165','Santo André','SP','1970-05-06'),
+    -> ('Túlio Filho','Filhotutugmail.com','164.647.987-08','11 99887-1234','Ribeirão Pires','SP','1999-12-01'),
+    -> ('Fernando Ferdinando','Ferdinando@outlook.com','456.678.123-01','11 78911-0877','Suzano','SP','2000-03-18');
+Query OK, 3 rows affected (0.066 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [biblioteca]> INSERT INTO emprestimo_devolucao(codCliente, codLivros, codBibliotecario, data_devolucao, data_emprestimo) VALUES
+    -> (1,1,1,'2020-09-07','2020-07-07'),
+    -> (2,2,2,'2020-07-28','2020-05-28'),
+    -> (3,3,3,'2020-05-17','2020-03-17'),
+    -> (4,4,1,'2019-12-12','2020-02-12'),
+    -> (5,5,2,'2019-10-18','2019-08-18'),
+    -> (6,6,3,'2020-01-01','2019-11-01'),
+    -> (7,7,1,'2020-08-12','2020-05-12'),
+    -> (8,8,2,'2020-05-27','2020-02-16'),
+    -> (9,9,3,'2018-12-30','2018-08-23'),
+    -> (10,10,1,'2018-01-26','2017-11-15');
+Query OK, 10 rows affected (0.249 sec)
+Records: 10  Duplicates: 0  Warnings:0
