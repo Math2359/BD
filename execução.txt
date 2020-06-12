@@ -1,0 +1,110 @@
+ 	*** EXECUÇÃO - Farmacia - cmd ***
+
+MariaDB [(none)]> create database farmacia;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [(none)]> use farmacia;
+Database changed
+MariaDB [farmacia]> CREATE TABLE produto_remedio (
+    -> codProduto int PRIMARY KEY auto_increment,
+    -> nome varchar(255) not null,
+    -> fabricante varchar(255) not null,
+    -> preco decimal(7,2) not null,
+    -> generico bit,
+    -> qtde int not null
+    -> );
+Query OK, 0 rows affected (0.351 sec)
+
+MariaDB [farmacia]> CREATE TABLE caixa_atendente (
+    -> codCaixa int PRIMARY KEY auto_increment,
+    -> salario decimal(7,2) not null,
+    -> numcel varchar(150) not null,
+    -> rg varchar(13) not null unique,
+    -> cpf varchar(14) not null unique,
+    -> numfixo varchar(150) not null,
+    -> email varchar(255) not null unique,
+    -> nome varchar(255) not null
+    -> );
+Query OK, 0 rows affected (0.281 sec)
+
+MariaDB [farmacia]> CREATE TABLE compra_venda (
+    -> codCompra_venda int PRIMARY KEY auto_increment,
+    -> total decimal(7,2),
+    -> hora time,
+    -> data date,
+    -> cpf varchar(14) null,
+    -> codCaixa int,
+    -> FOREIGN KEY(codCaixa) REFERENCES caixa_atendente (codCaixa)
+    -> );
+Query OK, 0 rows affected (0.257 sec)
+
+MariaDB [farmacia]> CREATE TABLE Relação_itens_compra (
+    -> codCompra_venda int,
+    -> codProduto int,
+    -> total_unitario int,
+    -> qtde int,
+    -> FOREIGN KEY(codProduto) REFERENCES produto_remedio (codProduto),
+    -> foreign key(codCompra_venda) references compra_venda (codCompra_venda)
+    -> );
+Query OK, 0 rows affected (0.585 sec)
+
+MariaDB [farmacia]> INSERT into caixa_atendente(nome, salario, numcel, rg, cpf, numfixo, email) VALUES
+    -> ('Josefo Mauro',5560.00,'11 11111-1111','12.187.198-09','123.123.124-09','11 9999-9090','Josefinho@outlook.com'),
+    -> ('Fredinho Gorge',7890.00,'11 22222-2222','34.987.076-15','432.876.654-08','11 4822-4321','Fredero@uol.com.br'), 
+    -> ('Ana Maria',20000.80,'11 33333-3333','99.081.733-15','569.979.167-09','11 4825-5598','Anainha@gmail.com');
+Query OK, 3 rows affected (0.086 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [farmacia]>
+MariaDB [farmacia]> INSERT INTO produto_remedio(nome, fabricante,preco, generico, qtde) VALUES
+    -> ('Desodorante Invisible','Suave Men',10.99,0,98),
+    -> ('Sabonete Líquido Phebo Odor de Rosas','Granado',9.99,0,10),
+    -> ('Enxaguante Bucal Icefusion','Colgate',7.99,0,47),
+    -> ('Sabonete Óleos Florais Verbena da Sicília','Francis',2.50,0,77),
+    -> ('Dorflex','Sanofi',1.99,1,100),
+    -> ('Manteiga de Cacau','Naturavene',3.99,0,80),
+    -> ('Triancinolona Acetonida','Germed',10.99,1,10),
+    -> ('Curativos Variados Hipoalergênicos','Ever Care',9.50,0,45),
+    -> ('Lenços de Papel Folha Dupla','Sofyts Elite',7.99,0,100),
+    -> ('Sabonete Hidratante Frutas vermelhas','Farnese',1.30,0,67),
+    -> ('Nimesulida','Eurofarma',15.20,1,50),
+    -> ('Cetoconazol + Dipropionato de Betametasona + Sulfato de Neomicina','Meldley',20.99,1,40);
+Query OK, 12 rows affected (0.089 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+MariaDB [farmacia]> INSERT INTO compra_venda(codCaixa, cpf, data, hora, total) VALUES
+    -> (1,'987.986.098-65','2019-09-09','09:19:00',78.95);
+Query OK, 1 row affected (0.080 sec)
+
+MariaDB [farmacia]>
+MariaDB [farmacia]> insert into relação_itens_compra(codCompra_venda, codProduto, qtde, total_unitario) VALUES
+    -> (1,1,4,43.96),
+    -> (1,2,1,9.99),
+    -> (1,4,10,25);
+Query OK, 3 rows affected (0.139 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [farmacia]> INSERT INTO compra_venda(codCaixa, cpf, data, hora, total) VALUES
+    -> (3,'098.654.032-96','2020-03-20','23:38:00',35.46);
+Query OK, 1 row affected (0.092 sec)
+
+MariaDB [farmacia]>
+MariaDB [farmacia]> insert into relação_itens_compra(codCompra_venda, codProduto, qtde, total_unitario) VALUES
+    -> (2,5,3,5.97),
+    -> (2,8,1,9.50),
+    -> (2,12,1,20.99);
+Query OK, 3 rows affected (0.166 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [farmacia]> INSERT INTO compra_venda(codCaixa, cpf, data, hora, total) VALUES
+    -> (2,'256.365.958-92','2020-06-09','18:16:00',82.14);
+Query OK, 1 row affected (0.118 sec)
+
+MariaDB [farmacia]>
+MariaDB [farmacia]> insert into relação_itens_compra(codCompra_venda, codProduto, qtde, total_unitario) VALUES
+    -> (3,7,2,21.98),
+    -> (3,9,3,23.97),
+    -> (3,11,1,15.20),
+    -> (3,12,1,20.99);
+Query OK, 4 rows affected (0.069 sec)
+Records: 4  Duplicates: 0  Warnings: 0

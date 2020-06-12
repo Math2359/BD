@@ -1,0 +1,37 @@
+create database farmacia;
+use farmacia;
+CREATE TABLE produto_remedio (
+codProduto int PRIMARY KEY auto_increment,
+nome varchar(255) not null,
+fabricante varchar(255) not null,
+preco decimal(7,2) not null,
+generico bit,
+qtde int not null
+);
+CREATE TABLE caixa_atendente (
+codCaixa int PRIMARY KEY auto_increment,
+salario decimal(7,2) not null,
+numcel varchar(150) not null,
+rg varchar(12) not null unique,
+cpf varchar(14) not null unique,
+numfixo varchar(150) not null,
+email varchar(255) not null unique,
+nome varchar(255) not null
+);
+CREATE TABLE compra_venda (
+codCompra_venda int PRIMARY KEY AUTO_INCREMENT,
+total decimal(7,2),
+hora time,
+data date,
+cpf varchar(14) null,
+codCaixa int,
+FOREIGN KEY(codCaixa) REFERENCES caixa_atendente (codCaixa)
+);
+CREATE TABLE Relação_itens_compra (
+codCompra_venda int,
+codProduto int,
+total_unitario int,
+qtde int,
+FOREIGN KEY(codProduto) REFERENCES produto_remedio (codProduto),
+foreign key(codCompra_venda) references compra_venda (codCompra_venda)
+);
